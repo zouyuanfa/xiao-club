@@ -1,0 +1,26 @@
+# Node
+node_modules/
+src/node_modules/
+
+# Build output
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+__MACOSX/
+Thumbs.db
+
+# Java
+backend/target/
+*.class
+*.jar
+*.war
+
+# Env
+.env
+*.log
