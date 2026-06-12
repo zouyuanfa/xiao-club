@@ -17,6 +17,7 @@ Thumbs.db
 
 # Java
 backend/target/
+backend/.local-app.pid
 *.class
 *.jar
 *.war

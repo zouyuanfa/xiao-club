@@ -19,3 +19,13 @@ spring:
 
   jackson:
     default-property-inclusion: non_null
+
+logging:
+  level:
+    root: INFO
+    com.tangclub: INFO
+  file:
+    name: ${LOG_FILE:}
+
+app:
+  export-token: ${EXPORT_TOKEN:}

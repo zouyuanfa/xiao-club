@@ -12,6 +12,7 @@ command -v java >/dev/null
 command -v nginx >/dev/null
 
 install -d -o www-data -g www-data /opt/xiao-club/releases
+install -d -o www-data -g www-data /var/log/xiao-club
 install -d -m 700 /etc/xiao-club
 install -m 755 "$SCRIPT_DIR/deploy.sh" /opt/xiao-club/deploy.sh
 install -m 644 "$SCRIPT_DIR/xiao-club.service" /etc/systemd/system/xiao-club.service

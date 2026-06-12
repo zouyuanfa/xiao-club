@@ -11,8 +11,15 @@ const DetailPage = () => {
 
   return (
     <SwiperPage>
-      <div className="img-detail imgcommon" onClick={goSubmit}>
-        <img src={btnImg} className="btn" alt="进入表单" />
+      <div className="img-detail detail-page">
+        <button
+          type="button"
+          className="detail-action"
+          onClick={goSubmit}
+          aria-label="进入调研页面"
+        >
+          <img src={btnImg} alt="进入调研页面" />
+        </button>
       </div>
     </SwiperPage>
   )

@@ -2,21 +2,37 @@ package com.tangclub.controller;
 
 import com.tangclub.dto.ApiResponse;
 import com.tangclub.dto.SurveyRequest;
+import com.tangclub.service.SurveyExportService;
 import com.tangclub.service.SurveyService;
-import lombok.RequiredArgsConstructor;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/survey")
-@CrossOrigin(origins = "*")
 public class SurveyController {
 
     private final SurveyService surveyService;
+    private final SurveyExportService surveyExportService;
+    private final String exportToken;
 
-    public SurveyController(SurveyService surveyService) {
+    public SurveyController(
+            SurveyService surveyService,
+            SurveyExportService surveyExportService,
+            @Value("${app.export-token:}") String exportToken
+    ) {
         this.surveyService = surveyService;
+        this.surveyExportService = surveyExportService;
+        this.exportToken = exportToken;
     }
 
     /**
@@ -37,5 +53,44 @@ public class SurveyController {
             log.error("问卷提交失败", e);
             return ApiResponse.fail("提交失败: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/export")
+    public void exportSurveys(
+            @RequestHeader(value = "X-Export-Token", required = false) String requestToken,
+            HttpServletResponse response
+    ) throws IOException {
+        if (!isExportAuthorized(requestToken)) {
+            log.warn("拒绝未授权的问卷导出请求");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            return;
+        }
+
+        String timestamp = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
+        String filename = "xiao-club-surveys-" + timestamp + ".xlsx";
+
+        response.setContentType(
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        );
+        response.setHeader(
+                HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + filename + "\""
+        );
+
+        int exportedCount = surveyExportService.export(response.getOutputStream());
+        log.info("问卷导出成功, 共 {} 条", exportedCount);
+    }
+
+    private boolean isExportAuthorized(String requestToken) {
+        if (exportToken == null || exportToken.isBlank()
+                || requestToken == null || requestToken.isBlank()) {
+            return false;
+        }
+
+        return MessageDigest.isEqual(
+                exportToken.getBytes(StandardCharsets.UTF_8),
+                requestToken.getBytes(StandardCharsets.UTF_8)
+        );
     }
 }

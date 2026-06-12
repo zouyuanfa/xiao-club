@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { fields } from '../config/fields'
 import headerImg from '../assets/form-header.webp'
+import footerImg from '../assets/form-footer.webp'
 import submitImg from '../assets/submit-H243owGr.png'
 
 const SubmitPage = () => {
@@ -318,6 +319,7 @@ const SubmitPage = () => {
           />
         </form>
       </div>
+      <img src={footerImg} className="img form-footer" alt="" />
     </div>
   )
 }
