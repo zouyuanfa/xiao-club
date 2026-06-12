@@ -1,0 +1,17 @@
+[Unit]
+Description=Xiao Club Spring Boot service
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+EnvironmentFile=/etc/xiao-club/xiao-club.env
+WorkingDirectory=/opt/xiao-club/current/backend
+ExecStart=/usr/bin/java $JAVA_OPTS -jar /opt/xiao-club/current/backend/xiao-club.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

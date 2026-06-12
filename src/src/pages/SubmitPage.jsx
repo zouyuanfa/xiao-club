@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import { fields } from '../config/fields'
-import headerImg from '../assets/1-C3RSZf3V.png'
+import headerImg from '../assets/form-header.webp'
 import submitImg from '../assets/submit-H243owGr.png'
 
 const SubmitPage = () => {
@@ -288,7 +288,7 @@ const SubmitPage = () => {
   }
 
   return (
-    <div className="imgcommon" style={{ overflow: 'auto' }}>
+    <div className="form-page">
       <img src={headerImg} className="img img1" alt="" />
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">

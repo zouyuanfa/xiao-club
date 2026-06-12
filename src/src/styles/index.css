@@ -1,5 +1,12 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,11 +15,10 @@ body {
 }
 
 .master {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   box-sizing: border-box;
 }
 
@@ -30,30 +36,34 @@ body {
 }
 
 .img-index {
-  background-image: url('../assets/index-DVLJIvEg.jpg');
+  background-image: url('../assets/index.webp');
 }
 
 .img-detail {
-  background-image: url('../assets/detail-BMjKWpCb.jpg');
+  background-image: url('../assets/detail.webp');
 }
 
 .imgcommon {
   cursor: pointer;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center top;
 }
 
 .swiper {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* 二维码页 */
 .barcode {
   background-color: #333;
-  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,12 +101,22 @@ body {
 
 /* 表单页 */
 .form-container {
-  width: calc(100% - 40px);
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
   padding: 20px;
-  background-image: url('../assets/2-rsAxotAo.png');
+  background-color: #e4cdd1;
+  background-image: url('../assets/form-background.webp');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: top center;
+}
+
+.form-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: #e4cdd1;
 }
 
 .title {
@@ -116,15 +136,13 @@ body {
 }
 
 .form {
-  overflow: scroll;
-  height: 100%;
+  overflow: visible;
   border-radius: 8px;
-  padding: 0 10px 10px;
+  padding: 0 10px 100px;
   max-width: 500px;
   margin: auto;
   position: relative;
   top: 0;
-  margin-bottom: -160px;
   z-index: 2;
 }
 
@@ -273,8 +291,7 @@ body {
 
 /* 成功页 */
 .success {
-  height: 100%;
-  background-image: url('../assets/success-CMsNUPft.jpg');
+  background-image: url('../assets/success.webp');
 }
 
 .content {
