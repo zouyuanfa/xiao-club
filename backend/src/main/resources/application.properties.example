@@ -1,14 +1,14 @@
 server.port=${SERVER_PORT:8080}
 
-spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/xiao_club?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true}
+spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/xiao_club?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai}
 spring.datasource.username=${DB_USERNAME:root}
-spring.datasource.password=${DB_PASSWORD:root}
+spring.datasource.password=${DB_PASSWORD:change-me}
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.format_sql=false
 
 spring.jackson.default-property-inclusion=non_null
 
@@ -16,4 +16,4 @@ logging.level.root=INFO
 logging.level.com.tangclub=INFO
 logging.file.name=${LOG_FILE:}
 
-app.export-token=xiaotang1234
+app.export-token=${EXPORT_TOKEN:change-me}
