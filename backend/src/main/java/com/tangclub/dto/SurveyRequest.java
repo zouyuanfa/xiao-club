@@ -22,15 +22,14 @@ public class SurveyRequest {
     private String occupation;
     private String floorArea;
     private String preferredArea;
-    private List<String> preferredFloor;
     private List<String> unitLayoutPreference;
     private String purchaseFunds;
-    private String patType;
     private String propertyPurchaseCount;
     private List<String> accreditationMetrics;
-    private String clubhouseSystem;
     private List<String> trackedItems;
     private String masterPlanReview;
+    private String xichuanCampusLayout;
+    private String xichuanFaculty;
     private List<String> eventInterest;
     private String customerInterests;
 }

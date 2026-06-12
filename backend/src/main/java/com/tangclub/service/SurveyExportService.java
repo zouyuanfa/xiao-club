@@ -46,15 +46,14 @@ public class SurveyExportService {
             new Column("职业", Survey::getOccupation),
             new Column("当前居住面积", Survey::getFloorArea),
             new Column("意向面积", Survey::getPreferredArea),
-            new Column("意向楼层", Survey::getPreferredFloor),
             new Column("意向户型", Survey::getUnitLayoutPreference),
             new Column("购房资金", Survey::getPurchaseFunds),
-            new Column("付款方式", Survey::getPatType),
             new Column("置业次数", Survey::getPropertyPurchaseCount),
             new Column("项目认可点", Survey::getAccreditationMetrics),
-            new Column("了解棠CLUB", Survey::getClubhouseSystem),
             new Column("关注项目", Survey::getTrackedItems),
             new Column("了解城西CID规划", Survey::getMasterPlanReview),
+            new Column("了解西川一校三区布局", Survey::getXichuanCampusLayout),
+            new Column("了解西川师资情况", Survey::getXichuanFaculty),
             new Column("感兴趣的活动", Survey::getEventInterest),
             new Column("意见建议", Survey::getCustomerInterests),
             new Column(
@@ -160,8 +159,8 @@ public class SurveyExportService {
     private void setColumnWidths(Sheet sheet) {
         int[] widths = {
                 10, 22, 14, 10, 14, 18, 16, 18, 18, 18,
-                18, 18, 18, 24, 24, 18, 18, 16, 32, 18,
-                36, 22, 36, 42, 22
+                18, 18, 18, 24, 18, 16, 32, 36, 22, 36,
+                24, 24, 42, 22
         };
 
         for (int columnIndex = 0; columnIndex < widths.length; columnIndex++) {

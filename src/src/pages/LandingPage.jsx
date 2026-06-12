@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import SwiperPage from '../components/SwiperPage'
+import joinNowImg from '../assets/join-now.png'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -9,9 +9,16 @@ const LandingPage = () => {
   }
 
   return (
-    <SwiperPage navto={goDetail}>
-      <div className="img-index imgcommon" />
-    </SwiperPage>
+    <div className="img-index landing-page">
+      <button
+        type="button"
+        className="landing-action"
+        onClick={goDetail}
+        aria-label="现在入会"
+      >
+        <img src={joinNowImg} alt="现在入会" />
+      </button>
+    </div>
   )
 }
 

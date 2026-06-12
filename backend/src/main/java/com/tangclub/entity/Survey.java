@@ -58,10 +58,6 @@ public class Survey {
     @Column(name = "preferred_area", length = 30)
     private String preferredArea;
 
-    /** 意向楼层（多选，逗号分隔） */
-    @Column(name = "preferred_floor", length = 200)
-    private String preferredFloor;
-
     /** 意向户型结构（多选，逗号分隔） */
     @Column(name = "unit_layout_preference", length = 200)
     private String unitLayoutPreference;
@@ -69,10 +65,6 @@ public class Survey {
     /** 购房资金 */
     @Column(name = "purchase_funds", length = 30)
     private String purchaseFunds;
-
-    /** 付款方式 */
-    @Column(name = "pat_type", length = 30)
-    private String patType;
 
     /** 置业次数 */
     @Column(name = "property_purchase_count", length = 30)
@@ -82,10 +74,6 @@ public class Survey {
     @Column(name = "accreditation_metrics", length = 500)
     private String accreditationMetrics;
 
-    /** 是否了解棠CLUB会所体系 */
-    @Column(name = "clubhouse_system", length = 30)
-    private String clubhouseSystem;
-
     /** 关注的项目（多选，逗号分隔） */
     @Column(name = "tracked_items", length = 500)
     private String trackedItems;
@@ -93,6 +81,14 @@ public class Survey {
     /** 是否了解城西CID产城更新规划 */
     @Column(name = "master_plan_review", length = 30)
     private String masterPlanReview;
+
+    /** 是否了解西川一校三区的布局 */
+    @Column(name = "xichuan_campus_layout", length = 30)
+    private String xichuanCampusLayout;
+
+    /** 是否了解西川师资情况 */
+    @Column(name = "xichuan_faculty", length = 30)
+    private String xichuanFaculty;
 
     /** 感兴趣的活动（多选，逗号分隔） */
     @Column(name = "event_interest", length = 500)

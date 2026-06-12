@@ -31,6 +31,36 @@ body {
   background-image: url('../assets/index.webp');
 }
 
+.landing-page {
+  position: relative;
+  width: 100%;
+  min-height: max(100vh, calc(100vw * 2435 / 1125));
+  min-height: max(100dvh, calc(100vw * 2435 / 1125));
+  background-color: #d7b5b8;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.landing-action {
+  position: absolute;
+  top: calc(100vw * 1555 / 1125 + 15px);
+  left: 50%;
+  width: clamp(150px, 43vw, 210px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  touch-action: manipulation;
+}
+
+.landing-action img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .img-detail {
   background-image: url('../assets/detail.webp');
 }

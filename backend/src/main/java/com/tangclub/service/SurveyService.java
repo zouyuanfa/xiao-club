@@ -40,19 +40,18 @@ public class SurveyService {
         // 户型相关
         survey.setFloorArea(request.getFloorArea());
         survey.setPreferredArea(request.getPreferredArea());
-        survey.setPreferredFloor(joinList(request.getPreferredFloor()));
         survey.setUnitLayoutPreference(joinList(request.getUnitLayoutPreference()));
 
         // 购房信息
         survey.setPurchaseFunds(request.getPurchaseFunds());
-        survey.setPatType(request.getPatType());
         survey.setPropertyPurchaseCount(request.getPropertyPurchaseCount());
 
         // 多选评价
         survey.setAccreditationMetrics(joinList(request.getAccreditationMetrics()));
-        survey.setClubhouseSystem(request.getClubhouseSystem());
         survey.setTrackedItems(joinList(request.getTrackedItems()));
         survey.setMasterPlanReview(request.getMasterPlanReview());
+        survey.setXichuanCampusLayout(request.getXichuanCampusLayout());
+        survey.setXichuanFaculty(request.getXichuanFaculty());
         survey.setEventInterest(joinList(request.getEventInterest()));
 
         // 建议
