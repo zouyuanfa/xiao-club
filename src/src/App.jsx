@@ -6,6 +6,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'))
 const DetailPage = lazy(() => import('./pages/DetailPage'))
 const SubmitPage = lazy(() => import('./pages/SubmitPage'))
 const SuccessPage = lazy(() => import('./pages/SuccessPage'))
+const ExportPage = lazy(() => import('./pages/ExportPage'))
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/detail" element={<DetailPage />} />
             <Route path="/submit" element={<SubmitPage />} />
             <Route path="/sucess" element={<SuccessPage />} />
+            <Route path="/export" element={<ExportPage />} />
           </Routes>
         </Suspense>
       </div>

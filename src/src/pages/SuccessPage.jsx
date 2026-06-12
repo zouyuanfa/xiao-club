@@ -8,16 +8,16 @@ const SuccessPage = () => {
 
   return (
     <div className="imgcommon success">
-      <div className="content">
-        <div className="top">
-          <div className="name">
-            <span className="right">{name}</span>
+      <div className="success-content">
+        <div className="success-message">
+          <div className="success-name">
+            <span>{name}</span>
             先生/女士
           </div>
           <div>恭喜你成为棠·CLUB会员</div>
         </div>
-        <div className="bottom">
-          <span className="right">您的会员号</span>
+        <div className="success-number">
+          <span>您的会员号</span>
           {number}
         </div>
       </div>
