@@ -25,3 +25,4 @@ backend/.local-app.pid
 # Env
 .env
 *.log
+backend/src/main/resources/application.yml

@@ -47,7 +47,6 @@ DB_URL=jdbc:mysql://127.0.0.1:3306/xiao_club?useUnicode=true&characterEncoding=u
 DB_USERNAME=xiao_club
 DB_PASSWORD=替换为真实密码
 JAVA_OPTS=-Xms256m -Xmx512m
-EXPORT_TOKEN=替换为一个足够长的随机字符串
 ```
 
 如果 MySQL 实际监听 `3344`，把 URL 中的 `3306` 改成 `3344`。
@@ -99,10 +98,14 @@ git push origin main
 导出问卷 Excel：
 
 ```bash
-curl -H 'X-Export-Token: 你的EXPORT_TOKEN' \
+curl -H 'X-Export-Token: xiaotang1234' \
   -o xiao-club-surveys.xlsx \
   https://你的域名/api/survey/export
 ```
+
+当前导出密码为 `xiaotang1234`，也可以直接访问：
+
+`https://你的域名/xiaoclub/#/export`
 
 ## 常用排查命令
 

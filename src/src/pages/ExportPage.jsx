@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
+const EXPORT_PASSWORD = 'xiaotang1234'
+
 const getDownloadFilename = (contentDisposition) => {
   const match = contentDisposition?.match(/filename="?([^";]+)"?/)
   return match?.[1] || 'xiao-club-surveys.xlsx'
@@ -16,6 +18,11 @@ const ExportPage = () => {
 
     if (!token.trim()) {
       setStatus('请输入导出密码')
+      return
+    }
+
+    if (token.trim() !== EXPORT_PASSWORD) {
+      setStatus('导出密码不正确')
       return
     }
 
