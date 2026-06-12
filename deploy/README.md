@@ -91,6 +91,17 @@ git push origin main
 
 在 GitHub 仓库的 `Actions` 页面可以查看部署进度。
 
+## 手动部署
+
+服务器已克隆仓库时，可以执行：
+
+```bash
+bash /root/xiao-club/deploy/manual-deploy.sh
+```
+
+脚本会拉取 `main` 最新代码、编译并发布前端、编译并重启后端，最后执行健康检查。
+生产环境的 `application.yml` 和 `application.properties` 不受 Git 更新影响。
+
 部署完成后访问：
 
 `http://59.110.175.98`
