@@ -8,7 +8,8 @@ WEB_ROOT="${WEB_ROOT:-/var/www/html/xiaoclub}"
 JAR_NAME="tang-club-backend-1.0.0.jar"
 JAR_PATH="$BACKEND_DIR/target/$JAR_NAME"
 BACKEND_LOG="${BACKEND_LOG:-/root/backend.log}"
-PID_FILE="/run/xiao-club.pid"
+BACKEND_SERVICE="xiao-club-backend.service"
+BACKEND_SERVICE_FILE="/etc/systemd/system/$BACKEND_SERVICE"
 
 log() {
   printf '[%s] %s\n' "$(date '+%F %T')" "$*"
@@ -19,7 +20,7 @@ if [[ "$(id -u)" -ne 0 ]]; then
   exit 1
 fi
 
-for command_name in git npm java mvn nginx curl; do
+for command_name in git npm java mvn nginx curl systemctl; do
   command -v "$command_name" >/dev/null
 done
 
@@ -59,33 +60,45 @@ find "$WEB_ROOT" -type d -exec chmod 755 {} +
 find "$WEB_ROOT" -type f -exec chmod 644 {} +
 
 log "Restarting backend"
-old_pids="$(pgrep -f '^java .*tang-club-backend-1\.0\.0\.jar$' || true)"
-if [[ -n "$old_pids" ]]; then
-  kill $old_pids
-  for _ in {1..30}; do
-    if ! kill -0 $old_pids 2>/dev/null; then
-      break
-    fi
-    sleep 1
-  done
-fi
+cat >"$BACKEND_SERVICE_FILE" <<EOF
+[Unit]
+Description=Xiao Club Spring Boot Backend
+After=network.target
 
-cd "$BACKEND_DIR"
-nohup java ${JAVA_OPTS:-} -jar "target/$JAR_NAME" \
-  >>"$BACKEND_LOG" 2>&1 &
-echo "$!" >"$PID_FILE"
+[Service]
+Type=simple
+User=root
+WorkingDirectory=$BACKEND_DIR
+Environment="JAVA_OPTS=${JAVA_OPTS:-}"
+ExecStart=/bin/sh -c 'exec /usr/bin/java \$JAVA_OPTS -jar $JAR_PATH'
+Restart=always
+RestartSec=5
+SuccessExitStatus=143
+StandardOutput=append:$BACKEND_LOG
+StandardError=append:$BACKEND_LOG
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable "$BACKEND_SERVICE" >/dev/null
+systemctl restart "$BACKEND_SERVICE"
 
 for _ in {1..60}; do
-  if ss -lnt 2>/dev/null | grep -q ':8080 '; then
+  if systemctl is-active --quiet "$BACKEND_SERVICE" \
+    && ss -lnt 2>/dev/null | grep -q ':8080 '; then
     break
   fi
-  if ! kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+  if systemctl is-failed --quiet "$BACKEND_SERVICE"; then
+    systemctl status "$BACKEND_SERVICE" --no-pager >&2 || true
     tail -n 80 "$BACKEND_LOG" >&2
     exit 1
   fi
   sleep 1
 done
 
+systemctl is-active --quiet "$BACKEND_SERVICE"
 ss -lnt 2>/dev/null | grep -q ':8080 '
 
 log "Reloading nginx"
