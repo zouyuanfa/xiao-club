@@ -39,16 +39,16 @@ class SurveyExportServiceTest {
             XSSFSheet sheet = workbook.getSheet("问卷数据");
 
             assertThat(sheet).isNotNull();
-            assertThat(sheet.getRow(0).getLastCellNum()).isEqualTo((short) 24);
+            assertThat(sheet.getRow(0).getLastCellNum()).isEqualTo((short) 22);
             assertThat(sheet.getRow(0).getCell(1).getStringCellValue()).isEqualTo("会员编号");
             assertThat(sheet.getRow(1).getCell(1).getStringCellValue())
                     .isEqualTo("TC20260612-0001");
             assertThat(sheet.getRow(1).getCell(2).getStringCellValue()).isEqualTo("测试用户");
-            assertThat(sheet.getRow(1).getCell(23).getStringCellValue())
+            assertThat(sheet.getRow(1).getCell(21).getStringCellValue())
                     .isEqualTo("2026-06-12 14:00:00");
             assertThat(sheet.getPaneInformation().isFreezePane()).isTrue();
             assertThat(sheet.getCTWorksheet().isSetAutoFilter()).isTrue();
-            assertThat(sheet.getCTWorksheet().getAutoFilter().getRef()).isEqualTo("A1:X1");
+            assertThat(sheet.getCTWorksheet().getAutoFilter().getRef()).isEqualTo("A1:V1");
         }
     }
 
@@ -68,13 +68,11 @@ class SurveyExportServiceTest {
         survey.setFloorArea("70-90㎡");
         survey.setPreferredArea("100-120㎡");
         survey.setUnitLayoutPreference("三房双卫");
-        survey.setPurchaseFunds("理财");
         survey.setPropertyPurchaseCount("二次");
         survey.setAccreditationMetrics("交通配套");
         survey.setTrackedItems("新房-其他,锦江区区二手房");
         survey.setMasterPlanReview("听说过");
         survey.setXichuanCampusLayout("非常了解");
-        survey.setXichuanFaculty("听说过");
         survey.setEventInterest("室内多元化运动");
         survey.setCustomerInterests("测试建议");
         survey.setCreatedAt(LocalDateTime.of(2026, 6, 12, 14, 0));

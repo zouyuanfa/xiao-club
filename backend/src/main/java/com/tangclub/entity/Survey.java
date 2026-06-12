@@ -62,10 +62,6 @@ public class Survey {
     @Column(name = "unit_layout_preference", length = 200)
     private String unitLayoutPreference;
 
-    /** 购房资金 */
-    @Column(name = "purchase_funds", length = 30)
-    private String purchaseFunds;
-
     /** 置业次数 */
     @Column(name = "property_purchase_count", length = 30)
     private String propertyPurchaseCount;
@@ -85,10 +81,6 @@ public class Survey {
     /** 是否了解西川一校三区的布局 */
     @Column(name = "xichuan_campus_layout", length = 30)
     private String xichuanCampusLayout;
-
-    /** 是否了解西川师资情况 */
-    @Column(name = "xichuan_faculty", length = 30)
-    private String xichuanFaculty;
 
     /** 感兴趣的活动（多选，逗号分隔） */
     @Column(name = "event_interest", length = 500)

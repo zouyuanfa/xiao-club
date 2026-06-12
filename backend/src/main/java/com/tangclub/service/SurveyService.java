@@ -43,7 +43,6 @@ public class SurveyService {
         survey.setUnitLayoutPreference(joinList(request.getUnitLayoutPreference()));
 
         // 购房信息
-        survey.setPurchaseFunds(request.getPurchaseFunds());
         survey.setPropertyPurchaseCount(request.getPropertyPurchaseCount());
 
         // 多选评价
@@ -51,7 +50,6 @@ public class SurveyService {
         survey.setTrackedItems(joinList(request.getTrackedItems()));
         survey.setMasterPlanReview(request.getMasterPlanReview());
         survey.setXichuanCampusLayout(request.getXichuanCampusLayout());
-        survey.setXichuanFaculty(request.getXichuanFaculty());
         survey.setEventInterest(joinList(request.getEventInterest()));
 
         // 建议
