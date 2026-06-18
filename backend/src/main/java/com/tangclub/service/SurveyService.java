@@ -1,4 +1,4 @@
-package com.tangclub.service;
+avpackage com.tangclub.service;
 
 import com.tangclub.dto.SurveyRequest;
 import com.tangclub.entity.Survey;
@@ -22,6 +22,12 @@ public class SurveyService {
      */
     @Transactional
     public String submitSurvey(SurveyRequest request) {
+        // 检查手机号是否已注册
+        if (request.getPhone() != null && !request.getPhone().isBlank()
+                && surveyRepository.existsByPhone(request.getPhone())) {
+            throw new IllegalArgumentException("该手机已注册，请勿重复提交");
+        }
+
         Survey survey = new Survey();
 
         // 基本信息

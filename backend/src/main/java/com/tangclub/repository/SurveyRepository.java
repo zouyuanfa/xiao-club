@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
 
     long count();
+
+    boolean existsByPhone(String phone);
 }
