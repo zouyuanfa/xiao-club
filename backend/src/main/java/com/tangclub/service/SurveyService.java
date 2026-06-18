@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -55,8 +55,8 @@ public class SurveyService {
         // 建议
         survey.setCustomerInterests(request.getCustomerInterests());
 
-        // 生成会员编号: TC + 日期 + 4位序号
-        String memberNumber = generateMemberNumber();
+        // 生成会员编号: 登记日期到小时 + 手机号后四位
+        String memberNumber = generateMemberNumber(request.getPhone());
         survey.setMemberNumber(memberNumber);
 
         surveyRepository.save(survey);
@@ -66,12 +66,23 @@ public class SurveyService {
 
     /**
      * 生成会员编号
-     * 格式: TC20260611-0001
+     * 格式: 20260618183344
      */
-    private String generateMemberNumber() {
-        String dateStr = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        long count = surveyRepository.count() + 1;
-        return String.format("TC%s-%04d", dateStr, count);
+    private String generateMemberNumber(String phone) {
+        String dateStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHH"));
+        return dateStr + getLastFourDigits(phone);
+    }
+
+    private String getLastFourDigits(String phone) {
+        if (phone == null) {
+            return "0000";
+        }
+
+        String digits = phone.replaceAll("\\D", "");
+        if (digits.length() >= 4) {
+            return digits.substring(digits.length() - 4);
+        }
+        return String.format("%4s", digits).replace(' ', '0');
     }
 
     /**
