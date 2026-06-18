@@ -1,4 +1,4 @@
-avpackage com.tangclub.service;
+package com.tangclub.service;
 
 import com.tangclub.dto.SurveyRequest;
 import com.tangclub.entity.Survey;
