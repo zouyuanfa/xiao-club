@@ -132,7 +132,13 @@ const SubmitPage = () => {
   }
 
   const onError = (error) => {
-    alert('提交失败')
+    if (error && error.data && error.data.message) {
+      alert(error.data.message)
+    } else if (error && error.response && error.response.data && error.response.data.message) {
+      alert(error.response.data.message)
+    } else {
+      alert('提交失败，请稍后重试')
+    }
     console.error(error)
   }
 
